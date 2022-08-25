@@ -45,10 +45,10 @@ function App() {
   }
 
   const records = useMemo(()=> {
-    return mergePostUsers(posts, users)
+    return mergePostUsers()
   },[posts, users, sortOrder]);
 
-  //const records = mergePostUsers(posts, users);
+  //const records = posts // mergePostUsers(); by adding function it will continiously re render
 
   //console.log("records", records);
 
@@ -68,7 +68,10 @@ function App() {
     })
   }, [])
 
-  const handleNewPost = (newPost) => {};
+  const handleNewPost = (newPost) => {
+    //console.log("newPost", newPost);
+    setPosts([...posts, newPost]);
+  };
 
   const handleSortClick = () => {
     sortOrder === 'asc' ? setSortOrder("dsc") : setSortOrder("asc")
